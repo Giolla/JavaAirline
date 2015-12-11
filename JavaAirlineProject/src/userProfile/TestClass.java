@@ -12,7 +12,7 @@ public class TestClass extends Database {
 		
 		
 		// call to connect to database method (need logic here to run
-		// when user requests a query
+		// when user requests a query or this method could be called from another layer like the reservation screen GUI
 		//connect();
 		
 		
