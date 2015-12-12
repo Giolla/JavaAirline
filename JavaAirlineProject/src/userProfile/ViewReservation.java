@@ -16,7 +16,7 @@ import javax.swing.*;
 		ViewReservation() {
 			
 			//name of the frame
-			f = new JFrame("Reservation");
+			f = new JFrame("View Reservations");
 			f.getContentPane().setLayout(null);
 
 			//sets button size, name, and gave action listeners

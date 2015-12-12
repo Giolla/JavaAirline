@@ -17,6 +17,7 @@ public class GUI extends JFrame {
 	private JTextField username;
 	private JPasswordField password;
 	private JButton button;
+	private JButton registerButton, forgotPasswordButton;
 	private JLabel header;
 
 
@@ -33,6 +34,7 @@ public class GUI extends JFrame {
 		JFrame frame = new JFrame();
 		JPanel panel1 = new JPanel();
 		
+
 		//
 		//add(frame);
 		add(panel1);
@@ -48,11 +50,15 @@ public class GUI extends JFrame {
 		 * 
 		 */
 		
+		panel1.setPreferredSize(new Dimension(200, 200));
 		panel1.add(username = new JTextField(10));
 		panel1.add(labelUser = new JLabel("username"));
 		panel1.add(password = new JPasswordField(10));
 		panel1.add(labelPass = new JLabel("password"));
 		panel1.add(button = new JButton("Enter"));
+		panel1.add(registerButton = new JButton("Register"));
+		panel1.add(forgotPasswordButton = new JButton("Forgot Password"));
+		
 		
 		//ActionListener obj
 		Action act = new Action ();
@@ -60,7 +66,8 @@ public class GUI extends JFrame {
 		username.addActionListener(act);
 		password.addActionListener(act);
 		button.addActionListener(act);
-		
+		registerButton.addActionListener(act);
+		forgotPasswordButton.addActionListener(act);
 	}
 	
 	private class Action implements ActionListener {
@@ -68,7 +75,7 @@ public class GUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			
-if (event.getSource() == username) {
+			if (event.getSource() == username) {
 				
 				//logic here to check the username against database or we can just make an arrayList e.g....
 				userNames.add(username.getText());
@@ -82,7 +89,17 @@ if (event.getSource() == username) {
 				//and close current window
 				//panel1.disable();
 			
+				//after successful login user will enter the main menu
 			new Main();
+			}
+			//this button is for registration. Send user to registration panel
+			if (event.getSource() == registerButton){
+			
+				new RegistrationForm();
+			}
+			if (event.getSource() == forgotPasswordButton) {
+				//if button is selected user enters forgot Password screen and answers security question
+				
 			}
 		}
 		

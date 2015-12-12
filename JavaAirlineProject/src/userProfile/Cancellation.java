@@ -9,7 +9,7 @@ import java.sql.*;
 		JFrame f;
 		JButton b1, b2, b3;
 		Cancellation() {
-			f=new JFrame("Cancel a Reservation");
+			f = new JFrame("Cancel a Reservation");
 			f.getContentPane().setLayout(null);
 
 			//named buttons and gave ActionListeners
@@ -54,8 +54,7 @@ import java.sql.*;
 		}
 
 
-		public static void main(String args[])
-		{
+		public static void main(String args[]) {
 			new Cancellation();
 		}
 	}
