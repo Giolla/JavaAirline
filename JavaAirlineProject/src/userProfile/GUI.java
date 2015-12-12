@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 
+
 public class GUI extends JFrame {
 	
 	private JFrame frame;
@@ -16,6 +17,7 @@ public class GUI extends JFrame {
 	private JTextField username;
 	private JPasswordField password;
 	private JButton button;
+	private JLabel header;
 
 
 	private ArrayList <String> userNames = new ArrayList();
@@ -24,7 +26,7 @@ public class GUI extends JFrame {
 	private Color c = new Color (225,100,214);
 	
 	public GUI () {
-		//call to Jframe constructor and pass in tiltle for window
+		//call to JFrame constructor and pass in title for window
 		super("Log in");
 		// !!! Need to figure out how to make txt and password fields closer together
 		setLayout(new FlowLayout(45,95,145));
@@ -40,7 +42,7 @@ public class GUI extends JFrame {
 		 * 
 		 * Need a splash screen
 		 * 
-		 * Also need to probably redo the layout to make it look better
+		 * Also need to probably re-do the layout to make it look better
 		 * 
 		 * Need a JoptionPane or another Frame that asks if user is a first time customer
 		 * 
@@ -66,7 +68,7 @@ public class GUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			
-			if (event.getSource() == username) {
+if (event.getSource() == username) {
 				
 				//logic here to check the username against database or we can just make an arrayList e.g....
 				userNames.add(username.getText());
@@ -79,10 +81,9 @@ public class GUI extends JFrame {
 				//logic to move to the next window
 				//and close current window
 				//panel1.disable();
-				
-				
-			}
 			
+			new Main();
+			}
 		}
 		
 	}

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database  {
+	
 
 	private String departure;
 	private String destination;
