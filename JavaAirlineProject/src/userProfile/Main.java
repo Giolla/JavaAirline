@@ -1,32 +1,34 @@
 package userProfile;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-	class Main implements ActionListener {
+
+
+	public class Main implements ActionListener {
 		
 		//opens frame and buttons
 		JFrame f;
-		JButton reserveBut, reserveView, cancelBut, exitBut;
+		JButton reserveBut, /*paxBut,*/ cancelBut, exitBut;
 		
 		Reservation r;
-		ViewReservation v;
 		Cancellation c;
 
 
 		Main() {
-
+			
 			f = new JFrame("Main Menu");
 			f.getContentPane().setLayout(null);
-
+			f.getContentPane().setBackground(Color.LIGHT_GRAY);
 			//Set boundaries for buttons and ActionListeners
 
 			reserveBut = new JButton("Search Reservation");
 			reserveBut.addActionListener(this);
 			reserveBut.setBounds(150,390,210,60);
-			reserveView = new JButton("View Reservation");
-			reserveView.addActionListener(this);
-			reserveView.setBounds(150,490,210,60);
+			/*paxBut = new JButton("View Passenger");
+			paxBut.addActionListener(this);
+			paxBut.setBounds(580,390,210,60);*/
 			cancelBut = new JButton("Cancel Reservation");
 			cancelBut.addActionListener(this);
 			cancelBut.setBounds(580,390,210,60);
@@ -36,7 +38,7 @@ import javax.swing.*;
 
 
 			f.getContentPane().add(reserveBut);
-			f.getContentPane().add(reserveView);
+			/*f.getContentPane().add(paxBut);*/
 			f.getContentPane().add(cancelBut);
 			f.getContentPane().add(exitBut);
 
@@ -53,11 +55,12 @@ import javax.swing.*;
 				r = new Reservation();
 
 			}
-			if(e.getSource() == reserveView) {
+			
+			/*if (e.getSource() == paxBut) {
 				f.setVisible(false);
-				new ViewReservation();
+			    new Passenger();
+			}*/
 
-			}
 			if(e.getSource() == cancelBut) {
 	
 				f.setVisible(false);
@@ -70,8 +73,7 @@ import javax.swing.*;
 			}
 		}
 		public static void main(String args[]) {
-			//opens the main method
-			new Main();
+			//opens the main menu
+			 new Main();
 		}
 }
-

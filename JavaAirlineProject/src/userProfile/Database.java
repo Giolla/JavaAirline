@@ -18,17 +18,6 @@ public class Database  {
 			Connection link = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "Run4Ever");	
 		//this obj creates a link to localhost database named "world" using username "root" and password "Run4Ever"
 							
-			
-		// query statement obj
-			Statement qStatement = link.createStatement();
-		// query result return obj
-			ResultSet qResult = qStatement.executeQuery("select * from FLIGHTS");
-			
-		// prints query result while available (specified to print "Name" and "Population" columns from query result)
-			while (qResult.next()) {
-				System.out.println(qResult.getString("TO_LOC") + " "
-						+ qResult.getString("DEPART_TIME"));
-			}
 			} catch (SQLException sqle) {
 				System.out.println("An error occurred. Maybe user/password is invalid");
 				sqle.printStackTrace();
