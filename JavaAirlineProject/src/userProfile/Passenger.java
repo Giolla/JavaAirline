@@ -1,5 +1,6 @@
 package userProfile;
 
+
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
@@ -116,7 +117,7 @@ class Passenger extends Database implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		if(e.getSource()==b1){
+		if(e.getSource() == b1){
 			//lets users fill out form
 			try	{
 				String cat="";
@@ -155,7 +156,7 @@ class Passenger extends Database implements ActionListener {
 					prepStatement.executeUpdate();
 					prepStatement.close();
 				}
-				statement = con.createStatement();
+				statement = link.createStatement();
 				statement.executeUpdate("delete from TempPassenger");
 				JOptionPane.showMessageDialog(null,"Record Saved");
 				b2.setEnabled(false);
@@ -166,13 +167,13 @@ class Passenger extends Database implements ActionListener {
 			}
 		}
 		
-		if(e.getSource()==b2) {
+		if(e.getSource() == b2) {
 			
 			frame.setVisible(false);
 			new Main();
 		}
 
-		if(e.getSource()==b3) {
+		if(e.getSource() == b3) {
 			frame.setVisible(false);
 			System.exit(0);
 		}

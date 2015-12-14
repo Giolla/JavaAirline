@@ -1,11 +1,11 @@
 package userProfile;
 
-
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
-class Reservation extends Database implements ActionListener,FocusListener {
+
+public class Reservation extends Database implements ActionListener,FocusListener {
 	JFrame f;
 	JLabel label1,label2,label3,label4,label5,label6,label7,label8,label9,label10,label11,label12,label13;
 	JTextField t1,t2,t3,t4,t5,t6,t7;
@@ -18,7 +18,7 @@ class Reservation extends Database implements ActionListener,FocusListener {
 	int x;
 	JLabel imgL;
 	ImageIcon img;
-	void disable() {
+	public void disable() {
 		t1.setEnabled(false);
 		t2.setEnabled(false);
 		t3.setEnabled(false);
@@ -29,7 +29,8 @@ class Reservation extends Database implements ActionListener,FocusListener {
 		h.setEnabled(false);
 		b2.setEnabled(false);
 	}
-	void enable() {
+	
+	public void enable() {
 		t1.setEnabled(true);
 		t2.setEnabled(true);
 		t3.setEnabled(true);
@@ -122,7 +123,7 @@ class Reservation extends Database implements ActionListener,FocusListener {
 	public void focusLost(FocusEvent e) {
 		if(t2.getText().length()!= 0) {
 			try {
-				prepStatement = link.prepareStatement("select Flight_Num from Flights where Flight_No=?");
+				prepStatement = link.prepareStatement("select Flight_Num from Flights where Flight_Num =?");
 				prepStatement.setString(1,t2.getText());
 				resultSet=prepStatement.executeQuery();
 				
@@ -139,7 +140,7 @@ class Reservation extends Database implements ActionListener,FocusListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource()==b1) {
+		if(e.getSource() == b1) {
 			enable();
 			b1.setEnabled(false);
 			try{
@@ -153,7 +154,7 @@ class Reservation extends Database implements ActionListener,FocusListener {
 				System.out.println("Connection failed:" + e1);
 			}
 		}
-		if(e.getSource()==b2) {
+		if(e.getSource() == b2) {
 			try {
 				prepStatement = link.prepareStatement("insert into Reservation values(?,?,?,?,?,?,?,?)");
 				prepStatement.setString(1,t1.getText());
@@ -168,7 +169,7 @@ class Reservation extends Database implements ActionListener,FocusListener {
 
 
 				//update Passenger no.
-				prepStatement = link.prepareStatement("update PNR set Passenger_Num = ? where Passenger_Num = ?");
+				prepStatement = link.prepareStatement("update Passenger set Passenger_Num = ? where Passenger_Num = ?");
 				prepStatement.setInt(1,(x+1));
 				prepStatement.setInt(2,x);
 				prepStatement.executeUpdate();
@@ -188,11 +189,11 @@ class Reservation extends Database implements ActionListener,FocusListener {
 				x = resultSet.getInt(1);
 				Passenger P = new Passenger(x);
 				statement = link.createStatement();
-				resultSet = statement.executeQuery("select * from PassengerID");
+				resultSet = statement.executeQuery("select * from Passenger");
 				resultSet.next();
 				x = resultSet.getInt(1);
 				P.t1.setText(String.valueOf(x));
-				prepStatement = link.prepareStatement("update PassengerID set PID=? where PID=?");
+				prepStatement = link.prepareStatement("update Passenger set Passenger_Num = ? where Passenger_Num =?");
 				prepStatement.setInt(1,(x+1));
 				prepStatement.setInt(2,x);
 				prepStatement.executeUpdate();
@@ -202,7 +203,7 @@ class Reservation extends Database implements ActionListener,FocusListener {
 			}
 		}
 		
-		if(e.getSource()==b3) {
+		if(e.getSource() == b3) {
 			f.setVisible(false);
 			new Main();
 		}
