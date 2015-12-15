@@ -3,9 +3,11 @@ import java.awt.*;
 
 import javax.swing.*;
 
-
-
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class RegistrationForm extends JFrame implements ActionListener {
 
@@ -15,15 +17,18 @@ public class RegistrationForm extends JFrame implements ActionListener {
     labelSecureQuest, labelSecureAns;
     
     protected JTextField textFirstName, textLastName, textAddress, textSSN, 
-    textState, textZip, textUsername, textEmail, textSecureQuest, textSecureAns, textPassword;
+    textState, textZip, textUsername, textEmail, textSecureQuest, textSecureAns;
+    
+    JPasswordField JPasswordField1 = new JPasswordField();
 
    
     // declared buttons used on GUI screen
-    private JButton mainButton, submitButton, logoutButton;
+    private JButton submitButton, logoutButton;
     // declare content pane
     private Container contentPane;
 
     public RegistrationForm() {
+    	
         registrationGUI();
     } 
 
@@ -33,6 +38,7 @@ public class RegistrationForm extends JFrame implements ActionListener {
             // get content pane and set the layout to null
             contentPane = getContentPane();
             contentPane.setLayout(null);
+            contentPane.setVisible(true);
 
             // create the name label and text box
             labelFirstName = new JLabel();
@@ -144,11 +150,10 @@ public class RegistrationForm extends JFrame implements ActionListener {
             labelPassword.setSize(300, 25);
             contentPane.add(labelPassword);
             
-            textPassword = new JTextField();
-            textPassword.setText("");
-            textPassword.setLocation(120, 290);
-            textPassword.setSize(130, 25);
-            contentPane.add(textPassword);
+           
+    		JPasswordField1.setBounds(380,360,150,22);
+    		JPasswordField1.setLocation(120, 290);
+            contentPane.add(JPasswordField1);
             
             //create security question
             labelSecureQuest = new JLabel();
@@ -191,12 +196,6 @@ public class RegistrationForm extends JFrame implements ActionListener {
             contentPane.add(logoutButton);
             logoutButton.addActionListener(this);
 
-            mainButton = new JButton();
-            mainButton.setText("Main Menu");
-            mainButton.setLocation(150, 450);
-            mainButton.setSize(100, 30);
-            contentPane.add(mainButton);
-            mainButton.addActionListener(this);
 
             // set properties of window
             setTitle("Registration Screen");	
@@ -206,6 +205,9 @@ public class RegistrationForm extends JFrame implements ActionListener {
         } catch (Exception e) {
         }
     }
+    /* (non-Javadoc)
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
     public void actionPerformed(ActionEvent event) {
     	//if statements setting what actions each button will have if selected
 		if(event.getSource() == logoutButton){
@@ -213,17 +215,39 @@ public class RegistrationForm extends JFrame implements ActionListener {
 
 		}
 		if (event.getSource() == submitButton) {
-			//tells the submit button what to do and then enters main menu			
+			
+			try {
+				// Driver for mysql
+				Class.forName("com.mysql.jdbc.Driver");
+				 // connection link obj
+				 Connection link = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "Run4Ever");	
+				 // query statement obj
+				 
+				 Statement stmt = link.createStatement();
 
-			
+				
+					String customerSQL = "INSERT INTO USER VALUES ('" + textUsername.getText() + "' , '" + textFirstName.getText() + "' , '" + 
+					textLastName.getText()+ "', '" + textAddress.getText() + "' , '" + textSSN.getText() 
+					+ "' , '" + textState.getText()+ "', '" + textZip.getText()+ "' , '" 
+					+  "' , '" + textEmail.getText()+ "' , '" + textSecureQuest.getText()
+					+ "', '" + textSecureAns.getText() + "')";
+					stmt.executeUpdate(customerSQL);
+					JOptionPane.showMessageDialog(null, "Registration Successful");
+				
+				stmt.close();
+				link.close();
+			    } catch (ClassNotFoundException e) {
+			    	System.out.println("An error occurred");
+			    	e.printStackTrace();
+				}
+
+				catch(SQLException e) {
+				e.printStackTrace();
+			}
+		
 			new Main();
 		}
-		//tells the main button what to do
-		if (event.getSource() == mainButton){
-			
-			new Main();
-		}
-       
+		       
 }
 
     public static void main(String args[]) {
