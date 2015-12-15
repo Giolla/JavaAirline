@@ -28,13 +28,13 @@ import java.sql.*;
 			label1 = new JLabel("Flight_ID");
 			label1.setBounds(130,50,50,30);
 			label2 = new JLabel("From_Loc");
-			label2.setBounds(50,90,100,30);
+			label2.setBounds(50, 90, 100, 30);
 			label3 = new JLabel("To_Loc");
 			label3.setBounds(50,120,100,30);
 			label4 = new JLabel("Depart_Date");
-			label4.setBounds(50,150,100,30);
+			label4.setBounds(50, 150, 100, 30);
 			label5 = new JLabel("Depart_Time");
-			label5.setBounds(50,180,100,30);
+			label5.setBounds(50, 180, 100, 30);
 			label6 = new JLabel("Arrival_Time");
 			label6.setBounds(50,210,100,30);
 			
@@ -43,19 +43,19 @@ import java.sql.*;
 			h.addItemListener(this);
 			t1 = new JTextField(10);
 			t1.addActionListener(this);
-			t1.setBounds(150,90,100,30);
+			t1.setBounds(150, 90, 100, 30);
 			t2 =  new JTextField(10);
 			t2.addActionListener(this);
-			t2.setBounds(150,120,100,30);
+			t2.setBounds(150, 120, 100, 30);
 			t3=new JTextField(10);
 			t3.addActionListener(this);
-			t3.setBounds(150,150,100,30);
+			t3.setBounds(150, 150, 100, 30);
 			t4=new JTextField(10);
 			t4.addActionListener(this);
-			t4.setBounds(150,180,100,30);
+			t4.setBounds(150, 180, 100, 30);
 			t5=new JTextField(10);
 			t5.addActionListener(this);
-			t5.setBounds(150,210,100,30);
+			t5.setBounds(150, 210, 100, 30);
 			t6=new JTextField(10);
 			t6.addActionListener(this);
 			t6.setBounds(300,210,100,30);
@@ -77,7 +77,7 @@ import java.sql.*;
 			f.getContentPane().add(t6);
 			f.getContentPane().add(t7);
 			f.getContentPane().add(list);
-			f.setSize(1300,1000);
+			f.setSize(1300, 1000);
 			f.setVisible(true);
 			start();
 
@@ -116,11 +116,11 @@ import java.sql.*;
 		}
 		
 		public void itemStateChanged(ItemEvent e){
-			System.out.println((String)h.getSelectedItem());
+			System.out.println((String) h.getSelectedItem());
 			try {
 				list.removeAll();
 				prepStatement=link.prepareStatement("select Flight_ID from Booking, User where Flight_ID=?, and Username=");
-				prepStatement.setString(1,h.getSelectedItem());
+				prepStatement.setString(1, h.getSelectedItem());
 				resultSet=prepStatement.executeQuery();
 				resultSet.next();
 				t1.setText(resultSet.getString(2));
@@ -130,22 +130,24 @@ import java.sql.*;
 				t5.setText(resultSet.getString(6));
 				t6.setText(resultSet.getString(7));
 				t7.setText(resultSet.getString(8));
-				prepStatement=link.prepareStatement("select * from Passenger where PNR_No=?");
-				prepStatement.setString(1,h.getSelectedItem());
+				
+				//missing code below for selecting column
+				prepStatement = link.prepareStatement("select * from flight where flight_id = ?");
+				prepStatement.setString(1, h.getSelectedItem());
 				resultSet=prepStatement.executeQuery();
 				
 				while(resultSet.next()) {
-					list.add(resultSet.getString(2)+"                                  "+resultSet.getString(3)+"                           "+resultSet.getString(4));
+					list.add(resultSet.getString(2) + "                                  " + resultSet.getString(3) + "                           "+resultSet.getString(4));
 				}
 			} catch(Exception e1) {
-				System.out.println("Connection failed"+e1);
+				System.out.println("Connection failed" + e1);
 			}
 		}
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == b1) {
 				try {
-					prepStatement = link.prepareStatement("delete from Booking where Flight_ID=?");
+					prepStatement = link.prepareStatement("delete from Booking where Flight_ID = ?");
 					prepStatement.setString(1, h.getSelectedItem());
 					prepStatement.executeUpdate();
 
