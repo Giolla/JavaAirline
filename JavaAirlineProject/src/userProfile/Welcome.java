@@ -17,10 +17,10 @@ class Welcome implements Runnable {
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		label1 = new JLabel("Java Airlines!");
 		label1.setBounds(250,300,900,50);
-		label1.setFont(new Font("Courier new",Font.BOLD,60));
+		label1.setFont(new Font("Courier new", Font.BOLD,60));
 		label1.setForeground(Color.RED);
 		label2 = new JLabel("By Rodney, Javar, and Giorgi");
-		label2.setFont(new Font("Courier new",Font.BOLD,35));
+		label2.setFont(new Font("Courier new", Font.BOLD,35));
 		label2.setBounds(350,380,800,40);
 		label2.setForeground(Color.BLUE);
 		label3 = new JLabel(splash);
@@ -41,7 +41,7 @@ class Welcome implements Runnable {
 			x++;
 		}
 		frame.setVisible(false);
-		loggedIn =new Login();
+		loggedIn = new Login();
 	}
 }
 

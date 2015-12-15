@@ -21,9 +21,10 @@ class Passenger extends Database implements ActionListener {
 	ImageIcon img;
 	
 	Passenger(int p) {
+		
 		passenger_num = p;
 
-		imgL=new JLabel(img);
+		imgL = new JLabel(img);
 		imgL.setBounds(0,400,400,200);
 		frame = new JFrame("Passenger");
 		frame.getContentPane().setLayout(null);

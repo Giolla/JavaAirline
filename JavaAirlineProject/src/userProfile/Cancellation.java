@@ -87,7 +87,7 @@ import java.sql.*;
 			b2.setBounds(160,270,100,30);
 			b3 = new JButton("Logout");
 			b3.addActionListener(this);
-			b3.setBounds(270,270,100,30);
+			b3.setBounds(270, 270, 100, 30);
 
 			//added buttons to frame
 			f.getContentPane().add(b1);
@@ -95,20 +95,20 @@ import java.sql.*;
 			f.getContentPane().add(b3);
 
 			//set frame size and visibility
-			f.setSize(900,700);
+			f.setSize(900, 700);
 			f.setVisible(true);
 
 		}
 
 		public void start(){
 			try {
-				statement=link.createStatement();
-				resultSet=statement.executeQuery("select * from Booking where");
+				statement = link.createStatement();
+				resultSet = statement.executeQuery("select * from Booking where");
 				while(resultSet.next()) {
 					h.add(resultSet.getString(1));
 				}
 			} catch(Exception e){
-				System.out.println("Connection failed:"+e);
+				System.out.println("Connection failed:" + e);
 			}
 		}
 		
@@ -140,10 +140,10 @@ import java.sql.*;
 		}
 		
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()==b1) {
+			if(e.getSource() == b1) {
 				try {
 					prepStatement=link.prepareStatement("delete from Booking where Flight_ID=?");
-					prepStatement.setString(1,h.getSelectedItem());
+					prepStatement.setString(1, h.getSelectedItem());
 					prepStatement.executeUpdate();
 
 					JOptionPane.showMessageDialog(null,"Reservation Cancelled");
@@ -152,7 +152,7 @@ import java.sql.*;
 					System.out.println("Connection failed:"+e1);
 				}
 			}
-			if(e.getSource()==b2){
+			if(e.getSource() == b2){
 				f.setVisible(false);
 				new Main();
 			}

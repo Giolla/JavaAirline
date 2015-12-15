@@ -10,12 +10,13 @@ import java.awt.event.*;
 public class RegistrationForm extends JFrame implements ActionListener {
 
   //Declared labels and text fields
-    private JLabel labelFirstName, labelLastName, labelAddress, labelSSN, 
+    protected JLabel labelFirstName, labelLastName, labelAddress, labelSSN, 
     labelState, labelZip, labelUsername, labelEmail, labelPassword, 
     labelSecureQuest, labelSecureAns;
     
-    private JTextField textFirstName, textLastName, textAddress, textSSN, 
-    textState, textZip, textUsername, textEmail, textPassword, textSecureQuest, textSecureAns;
+    protected JTextField textFirstName, textLastName, textAddress, textSSN, 
+    textState, textZip, textUsername, textEmail, textSecureQuest, textSecureAns, textPassword;
+
    
     // declared buttons used on GUI screen
     private JButton mainButton, submitButton, logoutButton;
@@ -184,7 +185,7 @@ public class RegistrationForm extends JFrame implements ActionListener {
             submitButton.addActionListener(this);
 
             logoutButton = new JButton();
-            logoutButton.setText("Logout");
+            logoutButton.setText("Cancel");
             logoutButton.setLocation(250, 450);
             logoutButton.setSize(100, 30);
             contentPane.add(logoutButton);

@@ -169,8 +169,8 @@ class Reservation extends Database implements ActionListener,FocusListener {
 
 				//update Passenger no.
 				prepStatement = link.prepareStatement("update PNR set Passenger_Num = ? where Passenger_Num = ?");
-				prepStatement.setInt(1,(x+1));
-				prepStatement.setInt(2,x);
+				prepStatement.setInt(1,(x + 1));
+				prepStatement.setInt(2, x);
 				prepStatement.executeUpdate();
 				JOptionPane.showMessageDialog(null, "Record Saved");
 
@@ -193,8 +193,8 @@ class Reservation extends Database implements ActionListener,FocusListener {
 				x = resultSet.getInt(1);
 				P.t1.setText(String.valueOf(x));
 				prepStatement = link.prepareStatement("update PassengerID set PID=? where PID=?");
-				prepStatement.setInt(1,(x+1));
-				prepStatement.setInt(2,x);
+				prepStatement.setInt(1,(x + 1));
+				prepStatement.setInt(2, x);
 				prepStatement.executeUpdate();
 			} catch(Exception e1) {
 				
@@ -202,7 +202,7 @@ class Reservation extends Database implements ActionListener,FocusListener {
 			}
 		}
 		
-		if(e.getSource()==b3) {
+		if(e.getSource() == b3) {
 			f.setVisible(false);
 			new Main();
 		}
