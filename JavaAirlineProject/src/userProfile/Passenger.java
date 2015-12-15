@@ -72,26 +72,23 @@ class Passenger extends Database implements ActionListener {
 		label11 = new JLabel("Security Question:");
 		label11.setBounds(50,600,120,30);
 		t11 = new JTextField(50);
-		t11.setBounds(170,650,120,30);
+		t11.setBounds(170, 650, 120, 30);
 		label12 = new JLabel("Answer:");
-		label12.setBounds(50,700,120,30);
+		label12.setBounds(50, 700, 120, 30);
 		t12 = new JTextField(15);
-		t12.setBounds(170,7000,120,30);
+		t12.setBounds(170, 7000, 120, 30);
 
 		
 		b1 = new JButton("Save");
 		b1.addActionListener(this);
 		b2 = new JButton("Main Menu");
 		b2.addActionListener(this);
-		b2.setBounds(170,330,100,30);
+		b2.setBounds(170, 330, 100, 30);
 		b3 = new JButton("Logout");
 		b3.addActionListener(this);
-		b3.setBounds(290,330,100,30);
+		b3.setBounds(290, 330, 100, 30);
 
-		b1.setMnemonic('S');
-		b2.setMnemonic('M');
-		b3.setMnemonic('L');
-
+		
 		frame.getContentPane().add(label1);
 		frame.getContentPane().add(label2);
 		frame.getContentPane().add(label3);
@@ -112,7 +109,7 @@ class Passenger extends Database implements ActionListener {
 		frame.getContentPane().add(t10);
 		frame.getContentPane().add(t11);
 		frame.getContentPane().add(t12);
-		frame.setSize(1300,1000);
+		frame.setSize(700, 700);
 		frame.setVisible(true);
 	}
 	
@@ -120,7 +117,7 @@ class Passenger extends Database implements ActionListener {
 		if(e.getSource() == b1){
 			//lets users fill out form
 			try	{
-				String cat="";
+				String cat = "";
 				prepStatement = link.prepareStatement("insert into TempPassenger values(?,?,?,?,?,?,?,?,?,?,?,?)");
 				prepStatement.setString(1,t1.getText());
 				prepStatement.setString(2,t2.getText());

@@ -63,38 +63,34 @@ public class Reservation extends Database implements ActionListener,FocusListene
 		label7.setBounds(250,200,50,30);
 		label8=new JLabel("Total Seats:");
 		label8.setBounds(50,230,100,30);
-		t1=new JTextField(10);
+		t1 = new JTextField(10);
 		t1.setBounds(230,50,120,30);
-		t2=new JTextField(10);
+		t2 = new JTextField(10);
 		t2.addFocusListener(this);
 		t2.setBounds(150,80,100,30);
-		t3=new JTextField(10);
+		t3 = new JTextField(10);
 		t3.setBounds(150,110,100,30);
-		t4=new JTextField(10);
+		t4 = new JTextField(10);
 		t4.setBounds(300,170,100,30);
-		t5=new JTextField(10);
+		t5 = new JTextField(10);
 		t5.setBounds(150,200,100,30);
-		t6=new JTextField(10);
+		t6 = new JTextField(10);
 		t6.setBounds(150,200,100,30);
-		t7=new JTextField(10);
+		t7 = new JTextField(10);
 		t7.setBounds(300,230,100,30);
 
-		b1=new JButton("Insert");
+		b1 = new JButton("Insert");
 		b1.setBackground(Color.BLUE);
 		b1.setBounds(50,270,100,30);
 		b1.addActionListener(this);
-		b2=new JButton("Next");
+		b2 = new JButton("Next");
 		b2.setBackground(Color.BLUE);
 		b2.setBounds(160,270,100,30);
 		b2.addActionListener(this);
-		b3=new JButton("Main");
+		b3 = new JButton("Main");
 		b3.setBackground(Color.BLUE);
 		b3.setBounds(270,270,100,30);
 		b3.addActionListener(this);
-
-		b1.setMnemonic('I');
-		b2.setMnemonic('N');
-		b3.setMnemonic('M');
 
 		f.getContentPane().add(label1);
 		f.getContentPane().add(label2);
@@ -157,14 +153,14 @@ public class Reservation extends Database implements ActionListener,FocusListene
 		if(e.getSource() == b2) {
 			try {
 				prepStatement = link.prepareStatement("insert into Reservation values(?,?,?,?,?,?,?,?)");
-				prepStatement.setString(1,t1.getText());
-				prepStatement.setString(2,t2.getText());
-				prepStatement.setString(3,t3.getText());
-				prepStatement.setString(4,h.getSelectedItem());
-				prepStatement.setString(5,t4.getText());
-				prepStatement.setString(6,t5.getText());
-				prepStatement.setString(7,t6.getText());
-				prepStatement.setString(8,t7.getText());
+				prepStatement.setString(1, t1.getText());
+				prepStatement.setString(2, t2.getText());
+				prepStatement.setString(3, t3.getText());
+				prepStatement.setString(4, h.getSelectedItem());
+				prepStatement.setString(5, t4.getText());
+				prepStatement.setString(6, t5.getText());
+				prepStatement.setString(7, t6.getText());
+				prepStatement.setString(8, t7.getText());
 				prepStatement.executeUpdate();
 
 
@@ -179,7 +175,7 @@ public class Reservation extends Database implements ActionListener,FocusListene
 				b2.setEnabled(false);
 				f.setVisible(false);
 			} catch(Exception e1) {
-				System.out.println("Connection failed:"+e1);
+				System.out.println("Connection failed:" + e1);
 			}
 			
 			try {
