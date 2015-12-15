@@ -11,11 +11,29 @@ import javax.swing.*;
 		
 		//opens frame and buttons
 		JFrame f1;
-	
+		JLabel label1, label2, label3;
+		JTextField t1;
+		String password = "1234", answer;
 		
 		JButton enterButt, cancelButt, quitButt;
 	
 		ForgotPassword() {
+			
+			label1 = new JLabel("How are you today?");
+			label1.setForeground(Color.BLUE);
+			label1.setBounds(15, 10, 150, 40);
+			label2 = new JLabel("Your Password is:");
+			label2.setForeground(Color.BLUE);
+			label2.setBounds(15, 70, 150, 40);
+			label3 = new JLabel(password);
+			label3.setForeground(Color.BLUE);
+			label3.setBounds(200, 70, 150, 30);
+			label3.setVisible(false);
+			
+			t1 = new JTextField(10);
+			t1.setForeground(Color.BLUE);
+			t1.addActionListener(this);
+			t1.setBounds(200, 10, 150, 30);
 			
 			
 			f1 = new JFrame("Forgot Password");
@@ -25,14 +43,14 @@ import javax.swing.*;
 
 			enterButt = new JButton("Enter");
 			enterButt.addActionListener(this);
-			enterButt.setBounds(50, 60, 210, 60);
+			enterButt.setBounds(50, 120, 210, 60);
 			
 			cancelButt = new JButton("Cancel to Login");
 			cancelButt.addActionListener(this);
-			cancelButt.setBounds(50, 120, 210, 60);
+			cancelButt.setBounds(50, 180, 210, 60);
 			quitButt = new JButton("Quit");
 			quitButt.addActionListener(this);
-			quitButt.setBounds(50, 180, 210, 60);
+			quitButt.setBounds(50, 240, 210, 60);
 
 			
 		
@@ -41,7 +59,10 @@ import javax.swing.*;
 		
 			f1.getContentPane().add(cancelButt);
 			f1.getContentPane().add(quitButt);
-
+			f1.getContentPane().add(label1);
+			f1.getContentPane().add(t1);
+			f1.getContentPane().add(label2);
+			f1.getContentPane().add(label3);
 			f1.setSize(400, 400);
 			f1.setVisible(true);
 
@@ -50,15 +71,21 @@ import javax.swing.*;
 	
 			//if statements setting what actions each button will have if selected
 			if(e.getSource() == enterButt){
-	
-				//if (ans == ) {
-					
-				f1.setVisible(false);
-				new Main();
-				//} else {
-					//JOptionPane.showMessageDialog(null,"Incorrect answer, try again");
-					
-				//}
+				
+					if(t1.getText().length() == 0){
+						
+						JOptionPane.showMessageDialog(null,"Fields are empty");
+						
+					} else if(t1.getText().equals("good")){
+						
+						label3.setVisible(true);
+						
+						f1.setVisible(false);
+						
+					} else {
+						
+						JOptionPane.showMessageDialog(null,"Invalid Answer");
+					}
 			}
 			
 			if(e.getSource() == cancelButt) {

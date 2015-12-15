@@ -2,16 +2,19 @@ package userProfile;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import java.sql.*;
 
-	public class Cancellation extends Database implements ActionListener, ItemListener {
+	public class Cancellation implements ActionListener, ItemListener {
 		JFrame f;
 		JLabel label1,label2,label3,label4,label5,label6;
 		JTextField t1,t2,t3,t4,t5,t6,t7;
 		JButton b1, b2, b3;
 		Choice h;
 		List list;
+		Connection link;
 		PreparedStatement prepStatement;
 		ResultSet resultSet;
 		Statement statement;
@@ -142,7 +145,7 @@ import java.sql.*;
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == b1) {
 				try {
-					prepStatement=link.prepareStatement("delete from Booking where Flight_ID=?");
+					prepStatement = link.prepareStatement("delete from Booking where Flight_ID=?");
 					prepStatement.setString(1, h.getSelectedItem());
 					prepStatement.executeUpdate();
 
