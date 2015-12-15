@@ -12,8 +12,7 @@ import javax.swing.*;
 		JFrame f;
 		JButton reserveBut, /*paxBut,*/ cancelBut, exitBut;
 		
-		Reservation r;
-		Cancellation c;
+	
 
 
 		Main() {
@@ -25,16 +24,16 @@ import javax.swing.*;
 
 			reserveBut = new JButton("Search Reservation");
 			reserveBut.addActionListener(this);
-			reserveBut.setBounds(150,390,210,60);
+			reserveBut.setBounds(50, 60, 210, 60);
 			/*paxBut = new JButton("View Passenger");
 			paxBut.addActionListener(this);
 			paxBut.setBounds(580,390,210,60);*/
 			cancelBut = new JButton("Cancel Reservation");
 			cancelBut.addActionListener(this);
-			cancelBut.setBounds(580,390,210,60);
+			cancelBut.setBounds(50, 120, 210, 60);
 			exitBut = new JButton("Logout");
 			exitBut.addActionListener(this);
-			exitBut.setBounds(580,490,210,60);
+			exitBut.setBounds(50, 180, 210, 60);
 
 
 			f.getContentPane().add(reserveBut);
@@ -42,7 +41,7 @@ import javax.swing.*;
 			f.getContentPane().add(cancelBut);
 			f.getContentPane().add(exitBut);
 
-			f.setSize(900,700);
+			f.setSize(400, 400);
 			f.setVisible(true);
 
 		}
@@ -52,7 +51,7 @@ import javax.swing.*;
 			if(e.getSource() == reserveBut){
 	
 				f.setVisible(false);
-				r = new Reservation();
+				new Reservation();
 
 			}
 			

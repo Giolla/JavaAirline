@@ -194,8 +194,8 @@ public class Reservation extends Database implements ActionListener,FocusListene
 				x = resultSet.getInt(1);
 				P.t1.setText(String.valueOf(x));
 				prepStatement = link.prepareStatement("update Passenger set Passenger_Num = ? where Passenger_Num =?");
-				prepStatement.setInt(1,(x+1));
-				prepStatement.setInt(2,x);
+				prepStatement.setInt(1,( x + 1));
+				prepStatement.setInt(2, x);
 				prepStatement.executeUpdate();
 			} catch(Exception e1) {
 				

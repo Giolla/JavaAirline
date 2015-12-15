@@ -11,7 +11,7 @@ class Login implements ActionListener {
 	JLabel label1,label2;
 	JTextField t1;
 	JPasswordField t2;
-	JButton b1,b2;
+	JButton b1,b2, b3, b4;
 
 	Login() {
 		frame = new JFrame("Login");
@@ -35,14 +35,24 @@ class Login implements ActionListener {
 		b1 = new JButton("Ok");
 		b1.setForeground(Color.BLUE);
 		b1.addActionListener(this);
-		b1.setBounds(50,120,100,30);
+		b1.setBounds(65,120,100,30);
 		b2 = new JButton("Cancel");
 		b2.setForeground(Color.BLUE);
 		b2.addActionListener(this);
-		b2.setBounds(180,120,100,30);
+		b2.setBounds(165,120,100,30);
+		b3 = new JButton("Forgot Password");
+		b3.addActionListener(this);
+		b3.setBounds(65,150,100,30);
+		b3.setForeground(Color.BLUE);
 
+		b4 = new JButton("Registration");
+		b4.addActionListener(this);
+		b4.setBounds(165,150,100,30);
+		b4.setForeground(Color.BLUE);
 		b1.setMnemonic('O');
 		b2.setMnemonic('C');
+		b3.setMnemonic('f');
+		b4.setMnemonic('r');
 
 		frame.getContentPane().add(label1);
 		frame.getContentPane().add(label2);
@@ -50,14 +60,19 @@ class Login implements ActionListener {
 		frame.getContentPane().add(t2);
 		frame.getContentPane().add(b1);
 		frame.getContentPane().add(b2);
-		frame.setBounds(300,300,300,200);
+		frame.getContentPane().add(b3);
+		frame.getContentPane().add(b4);
+
+		frame.setBounds(300,300,300,250);
+	
+		
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
 	// generic login made for now
 	public void actionPerformed(ActionEvent e){
-		if(e.getSource()==b1){
-			if(t1.getText().length()==0||t2.getText().length()==0){
+		if(e.getSource() == b1){
+			if(t1.getText().length() == 0 || t2.getText().length() == 0){
 				JOptionPane.showMessageDialog(null,"Fields are empty");
 			} else if(t1.getText().equals("admin") && t2.getText().equals("1234")){
 				frame.setVisible(false);
@@ -66,8 +81,16 @@ class Login implements ActionListener {
 				JOptionPane.showMessageDialog(null,"Invalid User Name or Password");
 			}
 		}
+		if(e.getSource() == b3){
+			frame.setVisible(false);
+			new ForgotPassword();
+		}
+		if(e.getSource() == b4){
+			frame.setVisible(false);
+			new RegistrationForm();
+		}
 		
-		if(e.getSource()==b2) {
+		if(e.getSource() == b2) {
 			frame.setVisible(false);
 			System.exit(0);
 		}
