@@ -13,15 +13,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class Database extends GUI implements ActionListener, ItemListener  {
+public class Database extends JFrame implements ActionListener   {
 	
 		JFrame frame;
 		JButton search;
 		JComboBox fromLoc, toLoc, fromDate, fromTime;
 		JLabel fromLabel, toLabel, fromDateLabel, fromTimeLabel;
-		PreparedStatement qStatement = null;
+		PreparedStatement ps = null;
 		Connection link;
-		ResultSet qResult = null;
+		ResultSet rs = null;
 		
 	public  Database() {
 		
@@ -56,15 +56,14 @@ public class Database extends GUI implements ActionListener, ItemListener  {
 		toLabel = new JLabel("Arrival");
 		toLabel.setBounds(160,300,100,30);
 		toLoc = new JComboBox(new String[]{"Atlanta", 
-				  "Charleston", "New York", "Los Angeles", 
-
-"Orlando", "San Francisco"});
+				  "Charleston", "New York", "Los Angeles", "Orlando", "San Francisco"});
 		toLoc.addActionListener(this);
 		toLoc.setBounds(160,270,100,30);
 		
 		search = new JButton("Ok");
 		search.addActionListener(this);
 		search.setBounds(270,270,100,30);
+		
 		//adding the buttons in frame
 		frame.getContentPane().add(fromDateLabel);
 		frame.getContentPane().add(fromDate);
@@ -79,41 +78,22 @@ public class Database extends GUI implements ActionListener, ItemListener  {
 		frame.setSize(400,400);
 		frame.setVisible(true);
 		
-		// here i just used strings to get content from comboBox
-		String fromL = fromLoc.getSelectedItem().toString();
-		String fromD = fromDate.getSelectedItem().toString();
-		String toL = toLoc.getSelectedItem().toString();
-			
 		
+		StateChange state = new StateChange();
 		
 		  try {
 				// Driver for mysql
 				Class.forName("com.mysql.jdbc.Driver");
 				 // connection link obj
-				 link = DriverManager.getConnection
-
-("jdbc:mysql://localhost:3306/world", "root", "Run4Ever");	
+				 link = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "Run4Ever");	
 				 // query statement obj
-				 qStatement = link.prepareStatement("select * from flights where from_date = ? and from_loc = ? and to_loc = ?");
 				
-				 qStatement.setString(1, fromD);
-				 qStatement.setString(2, fromL);
-				 qStatement.setString(3, toL);
-				 
-				 qResult = qStatement.executeQuery();
-				 
-				 while (qResult.next()) {
-					
-					 
-				}
-				 
-				} catch (SQLException sqle) {
-					System.out.println("An error occurred.Maybe user/password is invalid");
-					sqle.printStackTrace();
-				} catch (ClassNotFoundException cfne) {
-					cfne.printStackTrace();
-				}
-		
+		  	} catch (SQLException sqle) {
+				System.out.println("An error occurred.Maybe user/password is invalid");
+				sqle.printStackTrace();
+			} catch (ClassNotFoundException cfne) {
+				cfne.printStackTrace();
+			}
 	}
 
 	@Override
@@ -121,15 +101,40 @@ public class Database extends GUI implements ActionListener, ItemListener  {
 		// TODO Auto-generated method stub
 		
 	}
+	
+		private class StateChange implements ItemListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		// if (e.getStateChange() == ItemEvent.SELECTED) {
-		  //  String toLoc = (String)e.getItem();
-		   // System.out.println(s);
+		//  String toLoc = (String)e.getItem();
+		// System.out.println(s);
 		    
-		  
+		// here i just used strings to get content from comboBox
+				String fromL = fromLoc.getSelectedItem().toString();
+				String fromD = fromDate.getSelectedItem().toString();
+				String toL = toLoc.getSelectedItem().toString();
+				
+				try {
+								
+				 ps = link.prepareStatement("select * from flights where from_date = ? and from_loc = ? and to_loc = ?");
+				 ps.setString(1, fromD);
+				 ps.setString(2, fromL);
+				 ps.setString(3, toL);
+				 rs = ps.executeQuery();
+				 
+				 while (rs.next()) {
+					 
+				}
+				} catch (SQLException sqle) {
+					System.out.println("An error occurred.Maybe user/password is invalid");
+					sqle.printStackTrace();
+				}
+				
+				
+				
+					
 	}
-
+		}
 }

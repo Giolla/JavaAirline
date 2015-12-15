@@ -51,7 +51,7 @@ import javax.swing.*;
 			if(e.getSource() == reserveBut){
 	
 				f.setVisible(false);
-				new Reservation();
+				new Database ();
 
 			}
 			
